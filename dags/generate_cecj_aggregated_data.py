@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 from datetime import datetime
 
 
-def cecj_transform(tmp_dir_name):
+def cecj_transform():
     from cecj_data_transform import cecj_aggregated_data
 
     cecj_aggregated_data.main()
