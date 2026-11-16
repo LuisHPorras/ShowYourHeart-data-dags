@@ -10,15 +10,15 @@ from datetime import datetime
 
 
 def cecj_transform(tmp_dir_name):
-    from cecj_data_transform import cecj_aggregateed_data
+    from cecj_data_transform import cecj_aggregated_data
 
-    cecj_aggregateed_data.run()
+    cecj_aggregated_data.main()
 
 
 with DAG(
-    "generate_cecj_aggregated_data",
+    "DAG_generate_cecj_aggregated_data",
     start_date=datetime(2021, 1, 1),
-    schedule_interval="0 6 * * *",
+    schedule_interval=None,
     catchup=False,
 ) as dag:
     generate_cecj_aggregated_data = PythonOperator(
@@ -27,3 +27,5 @@ with DAG(
         email_on_failure=True,
         email=Variable.get("mail_zulip"),
     )
+
+    generate_cecj_aggregated_data
